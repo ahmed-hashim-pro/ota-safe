@@ -1,0 +1,24 @@
+# The bootloader logic built for a Cortex-M3 and run in QEMU (mps2-an385).
+# Not part of the workspace: it builds for thumbv7m-none-eabi only.
+[package]
+name = "ota-safe-qemu"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+ota-safe = { path = "../core" }
+ed25519-dalek = { version = "2", default-features = false }
+cortex-m-rt = "0.7"
+cortex-m-semihosting = "0.5"
+
+[profile.release]
+opt-level = "s"
+lto = true
+debug = false
+panic = "abort"
+codegen-units = 1
+
+[profile.dev]
+panic = "abort"

@@ -1,0 +1,10 @@
+planted bug              result       no cut  failing cuts   first failure
+none (ota-safe)          clean            ok         0/998   -
+single-meta-copy         caught           ok        98/998   good 44:erase-0: BRICKED: no valid metadata record
+no-crc                   caught           ok         3/998   bad-update 102:prefix-2: UNSAFE: unconfirmed v3 booted 4 times (limit 3)
+ignore-seq               caught        STUCK     7104/7104   good no cut: STUCK: still rebooting after 16 boots
+decrement-after-boot     caught       UNSAFE       467/942   bad-update no cut: UNSAFE: unconfirmed v3 booted 4 times (limit 3)
+rollback-without-reject  caught       UNSAFE      752/1243   bad-update no cut: UNSAFE: unconfirmed v3 booted 4 times (limit 3)
+trial-before-image       caught           ok       651/998   good 2:before: STUCK: settled on v1, expected v3
+
+both workloads, depth 1. Replay one: ota-sim life --scheme NAME --workload W [--cut AT:TEAR]

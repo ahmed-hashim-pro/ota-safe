@@ -1,0 +1,18 @@
+[package]
+name = "ota-sim"
+version = "0.1.0"
+description = "Cuts power at every flash operation of a firmware update and checks the device still boots."
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish = false
+
+[[bin]]
+name = "ota-sim"
+path = "src/main.rs"
+
+[dependencies]
+ota-safe = { path = "../core", features = ["mutants"] }
+ed25519-dalek = { version = "2", default-features = false }
+sha2 = { version = "0.10", default-features = false }

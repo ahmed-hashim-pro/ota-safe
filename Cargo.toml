@@ -1,0 +1,21 @@
+[workspace]
+members = ["core", "sim"]
+exclude = ["qemu"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+rust-version = "1.81"
+repository = "https://github.com/ahmed-hashim-pro/ota-safe"
+
+[profile.release]
+debug = false
+
+# Hashing and signature checks dominate the searches; optimise them even in
+# test builds so `cargo test` stays quick.
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev]
+opt-level = 1

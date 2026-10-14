@@ -1,0 +1,4 @@
+/target
+/qemu/target
+*.bin
+!docs/*.bin

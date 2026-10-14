@@ -1,0 +1,14 @@
+good: v1 installs v2, v2 installs v3; every version healthy
+scheme             no cut flash ops       cuts       ok  bricked    stuck   unsafe
+naive in-place         ok        91        443        6      437        0        0   98.6% bricked
+naive A/B              ok        95        459      445       14        0        0   3.1% bricked
+ota-safe               ok       103        491      491        0        0        0   every cut ok
+
+bad-update: the same, but v3 crashes before it can confirm itself
+scheme             no cut flash ops       cuts       ok  bricked    stuck   unsafe
+naive in-place      STUCK        91        443        0      437        6        0   98.6% bricked, 1.4% stuck
+naive A/B           STUCK        95        459        0       14      445        0   3.1% bricked, 96.9% stuck
+ota-safe               ok       107        507      507        0        0        0   every cut ok
+
+depth 1. A cut is one erase or program interrupted one way; replay one with:
+  ota-sim life --scheme NAME --workload W --cut AT:TEAR

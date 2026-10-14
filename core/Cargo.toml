@@ -1,0 +1,17 @@
+[package]
+name = "ota-safe"
+version = "0.1.0"
+description = "A/B firmware updates with trial boot and rollback, safe at every power cut. no_std."
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+
+[features]
+# Planted bugs, for showing that the power-cut search catches them. Never
+# enable this in firmware: it adds a `mutant` field to `Config`.
+mutants = []
+
+[dependencies]
+sha2 = { version = "0.10", default-features = false }
+ed25519-dalek = { version = "2", default-features = false }
