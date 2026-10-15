@@ -66,12 +66,13 @@ ota-sim matrix                                   # the tables above, under a sec
 ota-sim life --scheme naive-ab --cut 44:erase-0  # one cut, event by event
 ota-sim life --cut 44:erase-0                    # the same cut, ota-safe
 ota-sim mutants                                  # six planted bugs, all caught
-cargo test                                       # 33 tests, about 20 s
+cargo test                                       # 33 tests, about half a minute
 ```
 
 `make deep` runs the second cut at every operation after the first: 356,028
-lives for ota-safe, plus the naive schemes, in about two and a half minutes
-on 12 cores, then the same check as a test. `make qemu` runs the
+lives for ota-safe, plus the naive schemes. `ota-sim matrix --depth 2` takes
+about two and a half minutes on 12 cores; `make deep` then repeats the check
+as a test, and the whole target takes about 11 minutes on a 4-core CI runner. `make qemu` runs the
 Cortex-M3 check below; it needs `rustup target add thumbv7m-none-eabi` and
 `qemu-system-arm`. With nothing installed but Docker, `make docker-check`
 builds an image with all of it and runs lint, tests, the docs check and the
